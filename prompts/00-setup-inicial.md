@@ -32,6 +32,15 @@ demo-future-squad/
     └── prompt_changes.md
 ```
 
+## Softwaress Base a serem Instalados
+Instalar os software necessários para executar essa demo
+
+**Instale os softwares abaixo e suas dependencias caso seja necessário.**
+
+- Visual Studio Code
+- Docker
+- Docker Compose
+
 ## Arquivos Base a serem Criados
 
 ### 1. README.md Principal
