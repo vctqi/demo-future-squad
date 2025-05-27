@@ -1,0 +1,157 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://localhost:3001
+      - NODE_ENV=development
+    networks:
+      - marketplace-network
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./src/backend:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/marketplace
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=dev_jwt_secret_change_in_production
+      - JWT_EXPIRES_IN=1h
+      - REFRESH_TOKEN_EXPIRES_IN=7d
+    networks:
+      - marketplace-network
+
+  # Authentication Service
+  auth:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./src/backend:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/marketplace
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=dev_jwt_secret_change_in_production
+      - JWT_EXPIRES_IN=1h
+      - REFRESH_TOKEN_EXPIRES_IN=7d
+    networks:
+      - marketplace-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=marketplace
+    networks:
+      - marketplace-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - marketplace-network
+
+  # Mock Banking API
+  mock-banking:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile.mock
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./src/backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+    networks:
+      - marketplace-network
+
+  # Nginx - Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx/conf.d:/etc/nginx/conf.d
+      - ./deploy/nginx/certs:/etc/nginx/certs
+    depends_on:
+      - frontend
+      - backend
+      - auth
+    networks:
+      - marketplace-network
+
+  # Prometheus for metrics
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./deploy/prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    networks:
+      - marketplace-network
+
+  # Grafana for monitoring
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3005:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - marketplace-network
+
+networks:
+  marketplace-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:

@@ -1,0 +1,35 @@
+# Logs
+*.log
+logs/
+dev_action_log.md
+
+# Dependências
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+
+# Build
+dist/
+build/
+target/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporários
+*.tmp
+*.temp
+.cache/
+
+# Documentos gerados
+assets/documentos/*.md
+!assets/documentos/README.md

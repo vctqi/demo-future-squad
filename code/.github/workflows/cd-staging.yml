@@ -1,0 +1,41 @@
+name: CD Pipeline - Staging
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment: staging
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+      - name: Add SSH known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Copy docker-compose and configuration files
+        run: |
+          scp docker-compose.yml ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }}:~/marketplace/
+          scp -r deploy ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }}:~/marketplace/
+          
+      - name: Deploy to staging
+        run: |
+          ssh ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} "cd ~/marketplace && docker-compose pull && docker-compose up -d"
+          
+      - name: Run migrations
+        run: |
+          ssh ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} "cd ~/marketplace && docker-compose exec -T backend npm run migrate:deploy"
+          
+      - name: Verify deployment
+        run: |
+          ssh ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} "cd ~/marketplace && docker-compose ps"
