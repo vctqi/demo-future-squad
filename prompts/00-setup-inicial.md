@@ -190,4 +190,4 @@ Documente o processo de setup executado, incluindo:
 - Validações realizadas
 - Status final do setup
 
-O relatório deve ser salvo como: `setup_report.md` na pasta `assets/documentos/`
+O relatório deve ser salvo como: `YYYY-MM-DD-HH-MM_setup_report.md` na pasta `assets/documentos/`
