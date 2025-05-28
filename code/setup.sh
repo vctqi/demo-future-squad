@@ -3,6 +3,9 @@
 # Exit on error
 set -e
 
+# Change to the script's directory
+cd "$(dirname "$0")"
+
 echo "Setting up Marketplace de Benefícios para Clientes PJ development environment..."
 
 # Step 1: Check if Docker and Docker Compose are installed
@@ -23,11 +26,16 @@ docker-compose up -d
 
 # Step 3: Wait for database to be ready
 echo "Waiting for database to be ready..."
-sleep 10
+until docker-compose exec -T postgres pg_isready -U postgres -d marketplace -q; do
+  >&2 echo "Postgres is unavailable - sleeping"
+  sleep 5 # Increased sleep interval within the loop
+done
+>&2 echo "Postgres is up - waiting an additional 30 seconds for all services to stabilize..."
+sleep 30
 
 # Step 4: Run database migrations
 echo "Running database migrations..."
-docker-compose exec backend npm run migrate:dev
+docker-compose exec backend npm run migrate:apply
 
 # Step 5: Seed the database with initial data
 echo "Seeding the database with initial data..."

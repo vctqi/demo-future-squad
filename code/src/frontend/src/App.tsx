@@ -22,7 +22,7 @@ const Unauthorized = () => <div>Unauthorized Access</div>;
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import SuppliersPage from './pages/admin/SuppliersPage';
 import SupplierDetailPage from './pages/admin/SupplierDetailPage';
-import ServicesPage from './pages/admin/ServicesPage';
+import AdminServicesPage from './pages/admin/ServicesPage';
 import ServiceDetailPage from './pages/admin/ServiceDetailPage';
 
 // Supplier pages
@@ -34,7 +34,7 @@ import ServiceEditPage from './pages/supplier/services/ServiceEditPage';
 import HomePage from './pages/marketplace/HomePage';
 import CategoriesPage from './pages/marketplace/CategoriesPage';
 import CategoryDetailPage from './pages/marketplace/CategoryDetailPage';
-import ServicesPage from './pages/marketplace/ServicesPage';
+import MarketplaceServicesPage from './pages/marketplace/ServicesPage';
 import MarketplaceServiceDetailPage from './pages/marketplace/ServiceDetailPage';
 import ContractDetailsPage from './pages/contracts/ContractDetailsPage';
 import PaymentPage from './pages/contracts/payment/PaymentPage';
@@ -72,7 +72,7 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/categorias" element={<CategoriesPage />} />
           <Route path="/categorias/:categoryId" element={<CategoryDetailPage />} />
-          <Route path="/servicos" element={<ServicesPage />} />
+          <Route path="/servicos" element={<MarketplaceServicesPage />} />
           <Route path="/servicos/:serviceId" element={<MarketplaceServiceDetailPage />} />
           <Route 
             path="/servicos/:serviceId/contratar" 
@@ -160,7 +160,7 @@ const App: React.FC = () => {
             path="/admin/servicos" 
             element={
               <ProtectedRoute allowedRoles={['ADMIN']}>
-                <ServicesPage />
+                <AdminServicesPage />
               </ProtectedRoute>
             } 
           />

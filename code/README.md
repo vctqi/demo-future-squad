@@ -58,6 +58,20 @@ Este script irá:
 - Mock de APIs Bancárias: http://localhost:3003
 - Grafana Dashboard: http://localhost:3005 (admin/admin)
 
+4. Usuários pré-cadastrados para acesso:
+- **Administrador**:
+  - Email: admin@marketplace.com
+  - Senha: admin123
+- **Fornecedor 1**:
+  - Email: contabil@exemplo.com
+  - Senha: supplier123
+- **Fornecedor 2**:
+  - Email: rh@exemplo.com
+  - Senha: supplier123
+- **Cliente**:
+  - Email: cliente@exemplo.com
+  - Senha: client123
+
 ## Comandos Úteis
 
 ### Docker Compose

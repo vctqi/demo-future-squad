@@ -3,10 +3,12 @@ import { logger } from './logger';
 
 // Get Redis URL from environment variable or use default
 const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
+const redisPassword = process.env.REDIS_PASSWORD;
 
 // Create Redis client
 const redisClient = createClient({
   url: redisUrl,
+  password: redisPassword,
 });
 
 // Handle connection events

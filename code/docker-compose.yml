@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Frontend Service
   frontend:
@@ -13,8 +11,9 @@ services:
       - /app/node_modules
     depends_on:
       - backend
+      - auth # Adicionar dependência do serviço auth também
     environment:
-      - REACT_APP_API_URL=http://localhost:3001
+      - VITE_API_URL=/api
       - NODE_ENV=development
     networks:
       - marketplace-network
@@ -40,6 +39,7 @@ services:
       - JWT_SECRET=dev_jwt_secret_change_in_production
       - JWT_EXPIRES_IN=1h
       - REFRESH_TOKEN_EXPIRES_IN=7d
+      - REDIS_PASSWORD=P2myvfrnGnZqC8porvcZXSLvUSAWXPBrM6IrT0EKddE=
     networks:
       - marketplace-network
 
@@ -64,6 +64,7 @@ services:
       - JWT_SECRET=dev_jwt_secret_change_in_production
       - JWT_EXPIRES_IN=1h
       - REFRESH_TOKEN_EXPIRES_IN=7d
+      - REDIS_PASSWORD=P2myvfrnGnZqC8porvcZXSLvUSAWXPBrM6IrT0EKddE=
     networks:
       - marketplace-network
 
@@ -90,6 +91,9 @@ services:
       - redis_data:/data
     networks:
       - marketplace-network
+    environment:
+      - REDIS_PASSWORD=P2myvfrnGnZqC8porvcZXSLvUSAWXPBrM6IrT0EKddE=
+    command: redis-server --requirepass P2myvfrnGnZqC8porvcZXSLvUSAWXPBrM6IrT0EKddE=
 
   # Mock Banking API
   mock-banking:

@@ -90,10 +90,10 @@ export class JwtService {
    * @param refreshToken Refresh token
    * @returns New access and refresh tokens
    */
-  static async refreshTokens(refreshToken: string): Promise<{ accessToken: string; refreshToken: string } | null> {
+    static async refreshTokens(refreshToken: string): Promise<{ accessToken: string; refreshToken: string } | null> {
     try {
       // Check Redis first for faster validation
-      const userId = await redisClient.get(`refresh_token:${token}`);
+      let userId = await redisClient.get(`refresh_token:${refreshToken}`); // Use 'let' and 'refreshToken'
 
       if (!userId) {
         // If not in Redis, check database
@@ -108,7 +108,7 @@ export class JwtService {
         }
 
         // Use userId from database
-        userId = tokenRecord.userId;
+        userId = tokenRecord.userId; // Assign to existing 'userId'
       }
 
       // Get user to check status and role
@@ -122,8 +122,8 @@ export class JwtService {
         return null;
       }
 
-      // Delete old refresh token
-      await prisma.refreshToken.delete({
+      // Delete old refresh token (use deleteMany to avoid error if already deleted)
+      await prisma.refreshToken.deleteMany({
         where: { token: refreshToken },
       });
       await redisClient.del(`refresh_token:${refreshToken}`);
@@ -181,7 +181,11 @@ export class JwtService {
     try {
       return jwt.verify(token, JWT_SECRET);
     } catch (error) {
-      logger.debug(`Invalid JWT token: ${error.message}`);
+      let errorMessage = 'Unknown error verifying token';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      logger.debug(`Invalid JWT token: ${errorMessage}`);
       return null;
     }
   }

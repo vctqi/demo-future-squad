@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use VITE_API_URL for all API endpoints, defaulting to /api if not set
+// Nginx will route /api/auth/... to the auth service and other /api/... to the backend service.
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
 
 /**
  * Authentication service
@@ -18,7 +21,7 @@ const authService = {
     password: string;
     role: string;
   }) => {
-    const response = await axios.post(`${API_URL}/api/auth/register`, userData);
+    const response = await axios.post(`${API_BASE_URL}/auth/register`, userData);
     return response.data;
   },
 
@@ -29,7 +32,7 @@ const authService = {
    * @returns Promise with login response including tokens and user data
    */
   login: async (email: string, password: string) => {
-    const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+    const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
     
     // Store tokens and user data
     if (response.data.accessToken) {
@@ -54,7 +57,7 @@ const authService = {
         const token = localStorage.getItem('accessToken');
         
         await axios.post(
-          `${API_URL}/api/auth/logout`,
+          `${API_BASE_URL}/auth/logout`,
           { refreshToken, sessionId },
           {
             headers: {
@@ -102,7 +105,7 @@ const authService = {
       throw new Error('No refresh token available');
     }
     
-    const response = await axios.post(`${API_URL}/api/auth/refresh-token`, { refreshToken });
+    const response = await axios.post(`${API_BASE_URL}/auth/refresh-token`, { refreshToken });
     
     if (response.data.accessToken) {
       localStorage.setItem('accessToken', response.data.accessToken);
@@ -123,7 +126,7 @@ const authService = {
       throw new Error('No access token available');
     }
     
-    const response = await axios.get(`${API_URL}/api/auth/me`, {
+    const response = await axios.get(`${API_BASE_URL}/auth/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -141,7 +144,7 @@ const authService = {
    * @returns Promise with response
    */
   forgotPassword: async (email: string) => {
-    const response = await axios.post(`${API_URL}/api/auth/forgot-password`, { email });
+    const response = await axios.post(`${API_BASE_URL}/auth/forgot-password`, { email });
     return response.data;
   },
 
@@ -152,7 +155,7 @@ const authService = {
    * @returns Promise with response
    */
   resetPassword: async (token: string, password: string) => {
-    const response = await axios.post(`${API_URL}/api/auth/reset-password`, { token, password });
+    const response = await axios.post(`${API_BASE_URL}/auth/reset-password`, { token, password });
     return response.data;
   },
 };
