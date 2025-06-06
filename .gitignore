@@ -1,7 +1,3 @@
-# Logs
-*.log
-logs/
-dev_action_log.md
 
 # Dependências
 node_modules/

@@ -1,0 +1,66 @@
+2025-06-06 17:12:46 [INFO] - Conexão com o banco de dados estabelecida
+2025-06-06 17:12:46 [INFO] - Tabelas criadas ou já existentes
+2025-06-06 17:12:46 [INFO] - Aplicação iniciada na porta 3000
+2025-06-06 17:15:24 [INFO] - Consultando cache para CNPJ: 68292143000158
+2025-06-06 17:15:24 [DEBUG] - Cache não encontrado para CNPJ: 68292143000158
+2025-06-06 17:15:24 [INFO] - Iniciando consulta do CNPJ: 68292143000158
+2025-06-06 17:15:29 [INFO] - Resposta recebida para CNPJ: 68292143000158, status: 200
+2025-06-06 17:15:29 [DEBUG] - Iniciando cálculo de score para CNPJ: 68292143000158
+2025-06-06 17:15:29 [INFO] - Score final para CNPJ: 68292143000158: 0, classificação: Médio Risco
+2025-06-06 17:15:29 [INFO] - Consulta para CNPJ 68292143000158 salva com sucesso
+2025-06-06 17:21:33 [INFO] - Conexão com o banco de dados estabelecida
+2025-06-06 17:21:33 [INFO] - Tabelas criadas ou já existentes
+2025-06-06 17:21:33 [INFO] - Aplicação iniciada na porta 3000
+2025-06-06 17:21:59 [INFO] - Consultando cache para CNPJ: 60195538000120
+2025-06-06 17:21:59 [DEBUG] - Cache não encontrado para CNPJ: 60195538000120
+2025-06-06 17:21:59 [INFO] - Iniciando consulta do CNPJ: 60195538000120
+2025-06-06 17:22:01 [INFO] - Resposta recebida para CNPJ: 60195538000120, status: 200
+2025-06-06 17:22:01 [DEBUG] - Iniciando cálculo de score para CNPJ: N/A
+2025-06-06 17:22:01 [INFO] - Score final para CNPJ: N/A: 0, classificação: Médio Risco
+2025-06-06 17:22:01 [INFO] - Consulta para CNPJ 60195538000120 salva com sucesso
+2025-06-06 17:22:12 [INFO] - Consultando cache para CNPJ: 34532589000190
+2025-06-06 17:22:12 [DEBUG] - Cache não encontrado para CNPJ: 34532589000190
+2025-06-06 17:22:12 [INFO] - Iniciando consulta do CNPJ: 34532589000190
+2025-06-06 17:22:19 [INFO] - Resposta recebida para CNPJ: 34532589000190, status: 200
+2025-06-06 17:22:19 [DEBUG] - Iniciando cálculo de score para CNPJ: N/A
+2025-06-06 17:22:19 [INFO] - Score final para CNPJ: N/A: 0, classificação: Médio Risco
+2025-06-06 17:22:19 [INFO] - Consulta para CNPJ 34532589000190 salva com sucesso
+2025-06-06 17:25:23 [INFO] - Conexão com o banco de dados estabelecida
+2025-06-06 17:25:23 [INFO] - Tabelas criadas ou já existentes
+2025-06-06 17:25:23 [INFO] - Aplicação iniciada na porta 3000
+2025-06-06 17:25:33 [INFO] - Consultando cache para CNPJ: 34532589000190
+2025-06-06 17:25:33 [INFO] - Cache encontrado para CNPJ: 34532589000190, data da consulta original: 2025-06-06T20:22:19.379Z
+2025-06-06 17:25:41 [INFO] - Consultando cache para CNPJ: 34532589000190
+2025-06-06 17:25:41 [INFO] - Cache encontrado para CNPJ: 34532589000190, data da consulta original: 2025-06-06T20:22:19.379Z
+2025-06-06 17:25:45 [INFO] - Consultando cache para CNPJ: 04010318000104
+2025-06-06 17:25:45 [DEBUG] - Cache não encontrado para CNPJ: 04010318000104
+2025-06-06 17:25:45 [INFO] - Iniciando consulta do CNPJ: 04010318000104
+2025-06-06 17:25:50 [INFO] - Resposta recebida para CNPJ: 04010318000104, status: 200
+2025-06-06 17:25:50 [DEBUG] - Iniciando cálculo de score para CNPJ: 04010318000104
+2025-06-06 17:25:50 [DEBUG] - Critério aplicado: Empresa inativa/suspensa, pontuação: -20
+2025-06-06 17:25:50 [DEBUG] - Critério aplicado: Mais de 3 anos de operação, pontuação: +10
+2025-06-06 17:25:50 [INFO] - Score final para CNPJ: 04010318000104: -10, classificação: Alto Risco
+2025-06-06 17:25:50 [INFO] - Consulta para CNPJ 04010318000104 salva com sucesso
+2025-06-06 17:27:12 [INFO] - Consultando cache para CNPJ: 22060683000105
+2025-06-06 17:27:12 [DEBUG] - Cache não encontrado para CNPJ: 22060683000105
+2025-06-06 17:27:12 [INFO] - Iniciando consulta do CNPJ: 22060683000105
+2025-06-06 17:27:14 [INFO] - Resposta recebida para CNPJ: 22060683000105, status: 200
+2025-06-06 17:27:14 [DEBUG] - Iniciando cálculo de score para CNPJ: 22060683000105
+2025-06-06 17:27:14 [DEBUG] - Critério aplicado: Empresa ativa, pontuação: +10
+2025-06-06 17:27:14 [DEBUG] - Critério aplicado: Mais de 3 anos de operação, pontuação: +10
+2025-06-06 17:27:14 [INFO] - Score final para CNPJ: 22060683000105: 20, classificação: Baixo Risco
+2025-06-06 17:27:14 [INFO] - Consulta para CNPJ 22060683000105 salva com sucesso
+2025-06-06 17:27:43 [INFO] - Consultando cache para CNPJ: 05303491000163
+2025-06-06 17:27:43 [DEBUG] - Cache não encontrado para CNPJ: 05303491000163
+2025-06-06 17:27:43 [INFO] - Iniciando consulta do CNPJ: 05303491000163
+2025-06-06 17:27:45 [INFO] - Resposta recebida para CNPJ: 05303491000163, status: 200
+2025-06-06 17:27:45 [DEBUG] - Iniciando cálculo de score para CNPJ: 05303491000163
+2025-06-06 17:27:45 [DEBUG] - Critério aplicado: Empresa ativa, pontuação: +10
+2025-06-06 17:27:45 [DEBUG] - Critério aplicado: Mais de 3 anos de operação, pontuação: +10
+2025-06-06 17:27:45 [INFO] - Score final para CNPJ: 05303491000163: 20, classificação: Baixo Risco
+2025-06-06 17:27:45 [INFO] - Consulta para CNPJ 05303491000163 salva com sucesso
+2025-06-06 17:59:52 [INFO] - Conexão com o banco de dados estabelecida
+2025-06-06 17:59:52 [INFO] - Tabelas criadas ou já existentes
+2025-06-06 17:59:52 [INFO] - Aplicação iniciada na porta 3000
+2025-06-06 18:00:03 [INFO] - Consultando cache para CNPJ: 05303491000163
+2025-06-06 18:00:03 [INFO] - Cache encontrado para CNPJ: 05303491000163, data da consulta original: 2025-06-06T20:27:45.503Z

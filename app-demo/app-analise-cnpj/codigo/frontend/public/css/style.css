@@ -1,0 +1,124 @@
+/* Cores da TQI */
+:root {
+  --tqi-blue: #007bff;
+  --tqi-dark-blue: #0056b3;
+  --tqi-light-blue: #e6f2ff;
+  --tqi-orange: #ff7800;
+  --tqi-light-orange: #ffebcc;
+  --tqi-gray: #f8f9fa;
+  --tqi-dark-gray: #343a40;
+  --risk-low: #28a745;
+  --risk-medium: #ffc107;
+  --risk-high: #dc3545;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--tqi-gray);
+  color: var(--tqi-dark-gray);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  background-color: var(--tqi-dark-gray);
+  color: white;
+  margin-top: auto;
+  padding: 1rem 0;
+}
+
+.main-container {
+  padding: 2rem 0;
+  flex: 1;
+}
+
+.main-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+}
+
+.logo-tqi {
+  height: 40px;
+}
+
+.logo-febraban {
+  height: 50px;
+}
+
+.btn-primary {
+  background-color: var(--tqi-blue);
+  border-color: var(--tqi-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--tqi-dark-blue);
+  border-color: var(--tqi-dark-blue);
+}
+
+.card-header {
+  background-color: var(--tqi-light-blue);
+  border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+  font-weight: bold;
+  color: var(--tqi-blue);
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.risk-badge.low {
+  background-color: var(--risk-low);
+}
+
+.risk-badge.medium {
+  background-color: var(--risk-medium);
+  color: #212529;
+}
+
+.risk-badge.high {
+  background-color: var(--risk-high);
+}
+
+.criterio-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.pontuacao-positiva {
+  color: var(--risk-low);
+  font-weight: bold;
+}
+
+.pontuacao-negativa {
+  color: var(--risk-high);
+  font-weight: bold;
+}
+
+#sinaisAlerta ul {
+  padding-left: 1.5rem;
+}
+
+#criteriosList .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
